@@ -1,0 +1,134 @@
+. Solutions Explored
+ Solution 0: Neo4j-based Graph Approach
+Approach:
+ Use Neo4j (a cloud-based graph database) to store and query relationship data extracted from Excel files.
+
+
+Issues Identified:
+
+
+Neo4j is a cloud platform.
+
+
+Concerns about accessibility.
+
+
+Not meeting the company’s internal security and compliance requirements.
+
+
+
+ Solution 1: Direct Graph Construction Using NetworkX
+Approach:
+ Create graphs directly in Python using NetworkX.
+
+
+Process:
+
+
+Convert relationship data into JSON format.
+
+
+Use this JSON context for API calls to guide the graph construction.
+
+
+Outcome:
+
+
+Successful graph construction in some scenarios.
+
+
+Issues Identified:
+
+
+The JSON files generated are excessively large.
+
+
+Complexity in managing the JSON context.
+
+
+The relationships derived using NetworkX algorithms are not universally applicable across different Excel files, affecting consistency and generality.
+
+
+
+ Solution 2: API-Driven Relationship Mapping and Embedding Generation
+Approach:
+ Use API calls to extract relationships across the entire Excel sheet, map these relationships, then build graphs using NetworkX. Complement the graphs with embeddings to find relevant entities.
+
+
+Process:
+
+
+Extract relationships via dedicated API calls.
+
+
+Construct a relationship mapping.
+
+
+Generate a graph via NetworkX based on the mapping.
+
+
+Use embeddings to map user queries to relevant entities in the graph.
+
+
+Retrieve nearest neighbor nodes from the graph to provide context for responses.
+
+
+Outcome:
+
+
+The method effectively maps the query to related entities.
+
+
+Issues Identified:
+
+
+High processing time to extract relationships for the entire Excel sheet.
+
+
+Embedding models have a limited number of tokens, which can lead to problems when Excel cells contain long paragraphs. This results in the embeddings breaking up or misrepresenting the text.
+
+
+ Future Directions
+ Evaluation of Alternative Graph Libraries
+Experiment with Dedicated Libraries:
+ Investigate graphrag libraries available in Python that might offer more efficient or scalable methods to handle large graphs and complex relationships. The focus should be on libraries that offer both high-performance processing and streamlined integration with natural language models.
+
+
+ Enhancing RAG Methodology
+Alternative RAG Approaches:
+ Consider exploring methods beyond the current graph-based approach, such as:
+
+
+Integrating more advanced chunking and context management techniques.
+
+
+Leveraging alternative embeddings that can better handle longer paragraphs without token limitations.
+
+
+Developing a more dynamic relationship extraction model that adapts based on the content structure of each Excel sheet.
+
+
+ Expanding File Type Processing
+Handling PDF Files:
+ Plan the extension of the methodology to include PDFs:
+
+
+Investigate suitable libraries for parsing and extracting data from PDFs.
+
+
+Adapt the relationship extraction methodology to work with the structural differences present in PDF documents.
+
+
+ Transition to In-House Solutions
+Internal Application Development:
+
+
+Move away from reliance on external APIs (e.g., Gemini API) to using internally controlled applications.
+
+
+Ensure that the solution adheres to company policies regarding data security and accessibility.
+
+
+Implement a modular design that can easily incorporate additional file types (like PDFs) and integrate with internal data processing pipelines.
+
+
